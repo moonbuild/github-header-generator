@@ -1,0 +1,25 @@
+:root {
+  /* page background */
+  --background: #e9f1f7;
+  --primary: #623cea;
+  --contrast: #ff220c;
+
+  --surface: 231, 223, 218;
+  --border: #52657a;
+
+  --text-1: #39393a;
+  --text-2: #fff;
+
+  /* Header Variables */
+  --header-background: #e7dfda;
+  --text-contrast: #3b8391;
+  --header-font: 'Major mono display', monospace;
+
+  --font-1: 'Poppins', sans-serif;
+  --font-2: 'Roboto', sans-serif;
+
+  --fs-xs: 12px;
+  --fs-sm: 16px;
+  --fs-md: 24px;
+  --fs-lg: 40px;
+}
