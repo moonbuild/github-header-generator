@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChromePicker, type ColorResult } from 'react-color';
+import { ChromePicker } from 'react-color';
 
-const ColorPicker = () => {
+const ColorPicker = ({
+  color,
+  handleColorChange,
+}: {
+  color: string;
+  handleColorChange: (hexColor: string) => void;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [openDisplay, setOpenDisplay] = useState(false);
-  const [color, setColor] = useState('#541D1D');
-  const handleColorChange = (color: ColorResult) => {
-    setColor(color.hex);
-  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -61,7 +63,7 @@ const ColorPicker = () => {
                 }}
                 onClick={(e) => e.stopPropagation()}
               />
-              <ChromePicker color={color} onChange={handleColorChange} />
+              <ChromePicker color={color} onChange={(color) => handleColorChange(color.hex)} />
             </div>
           )}
         </div>

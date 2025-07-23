@@ -1,24 +1,40 @@
+import { useEditorStore } from '../../stores/editorStore';
+
 import './header.css';
 
 const Header = () => {
+  const { mainText, highlightedText, backgroundColor, textColor } = useEditorStore();
+  const SecondaryLine = () => (
+    <div className="background-text-wrapper">
+      {mainText.split(' ').map((text) => (
+        <span
+          className="background-text"
+          style={{ color: 'transparent', WebkitTextStroke: `1px ${textColor}` }}
+        >
+          {text}
+        </span>
+      ))}
+    </div>
+  );
   return (
     <div className="header">
-      <div className="banner">
-        <div className="background-text-wrapper">
-          <span className="background-text">ME•DEV</span>
-          <span className="background-text">MOURYA•PRANAY</span>
-          <span className="background-text">DEV•ME</span>
-        </div>
+      <div className="banner" style={{ backgroundColor: backgroundColor }}>
+        <SecondaryLine />
         <div className="main-text-wrapper">
-          <span className="main-text">ME•DEV</span>
-          <span className="main-text-focus">MOURYA•PRANAY</span>
-          <span className="main-text">DEV•ME</span>
+          {mainText.split(' ').map((text) => (
+            <span
+              className="main-text"
+              style={{
+                backgroundColor: `${text === highlightedText ? textColor : backgroundColor}`,
+                color: `${text === highlightedText ? backgroundColor : textColor}`,
+                padding: `${text === highlightedText ? '0px 2px' : ''}`,
+              }}
+            >
+              {text}
+            </span>
+          ))}
         </div>
-        <div className="background-text-wrapper">
-          <span className="background-text">ME•DEV</span>
-          <span className="background-text">MOURYA•PRANAY</span>
-          <span className="background-text">DEV•ME</span>
-        </div>
+        <SecondaryLine />
       </div>
     </div>
   );

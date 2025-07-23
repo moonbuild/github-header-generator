@@ -8,11 +8,14 @@
 }
 
 .banner {
-  background-color: var(--header-background);
   display: flex;
   flex-direction: column;
 
   padding: 4px;
+
+  min-width: 600px;
+  min-height: 100px;
+
   max-width: 800px;
   max-height: 300px;
   overflow: hidden;
@@ -31,7 +34,6 @@
   line-height: 1.2;
   white-space: nowrap;
   color: transparent;
-  -webkit-text-stroke: 1px var(--text-contrast);
 }
 
 .main-text-wrapper {
@@ -45,17 +47,4 @@
   font-size: var(--fs-lg);
   line-height: 1.2;
   white-space: nowrap;
-  color: var(--text-contrast);
-}
-
-.main-text-focus {
-  background-color: var(--text-contrast);
-  font-family: var(--header-font);
-  font-weight: 400;
-  font-size: var(--fs-lg);
-  line-height: 1.2;
-  white-space: nowrap;
-  color: var(--header-background);
-
-  padding: 0px 2px;
 }

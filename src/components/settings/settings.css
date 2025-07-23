@@ -8,6 +8,7 @@
   padding: 12px;
   border-radius: 12px;
   color: var(--text-1);
+  width: 1000px;
 }
 
 .settings-title {
@@ -38,4 +39,5 @@
   border: 1px solid var(--border);
   border-radius: 4px;
   background-color: var(--background);
+  min-width: 300px;
 }
