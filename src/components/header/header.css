@@ -1,0 +1,109 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+
+  padding: 8px;
+
+  min-width: 600px;
+  min-height: 100px;
+
+  max-width: 800px;
+  max-height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.background-text-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.background-text {
+  font-family: 'Major mono display', monospace;
+  font-weight: 400;
+  font-size: var(--fs-lg);
+  line-height: 1.2;
+  white-space: nowrap;
+  color: transparent;
+}
+
+.main-text-wrapper {
+  display: flex;
+  gap: 18px;
+}
+
+.main-text {
+  font-family: var(--header-font);
+  font-weight: 400;
+  font-size: var(--fs-lg);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.header-btns-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  color: var(--text-1);
+  font-size: 16px;
+  cursor: pointer;
+  background-color: rgba(var(--surface), 0.8);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: all 0.1s ease;
+}
+
+.copy-btn:hover {
+  transform: scale(1.08);
+  border-color: rgb(12, 165, 12);
+}
+
+.copy-btn:hover svg {
+  color: rgb(12, 165, 12);
+}
+
+.download-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  color: var(--text-1);
+  font-size: 16px;
+  cursor: pointer;
+  background-color: rgba(var(--surface), 0.8);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: all 0.1s ease;
+}
+
+.download-btn:hover {
+  transform: scale(1.08);
+  border-color: rgb(39, 125, 255);
+}
+
+.download-btn:hover svg {
+  color: rgb(39, 125, 255);
+}
