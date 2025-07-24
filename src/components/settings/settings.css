@@ -29,15 +29,11 @@
   gap: 8px;
 }
 
-.label {
-  /* font-weight: 800; */
-}
-
 .input {
   padding: 4px 8px;
   outline: none;
   border: 1px solid var(--border);
   border-radius: 4px;
-  background-color: var(--background);
+  background-color: white;
   min-width: 300px;
 }

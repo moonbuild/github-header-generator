@@ -6,10 +6,37 @@ import { useEditorStore } from '../../stores/editorStore';
 import './header.css';
 
 const Header = () => {
-  const headerRef = useRef<HTMLDivElement>(null);
-
   const { mainText, highlightedText, backgroundColor, textColor } = useEditorStore();
-  const [copy, setCopy] = useState(true);
+
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [showCopyIcon, setShowCopyIcon] = useState(true);
+
+  const copyImage = async () => {
+    if (!headerRef.current) return;
+    const canvas = await html2canvas(headerRef.current);
+    canvas.toBlob(async (blob) => {
+      if (!blob) return;
+      try {
+        const item = new ClipboardItem({ 'image/png': blob });
+        await navigator.clipboard.write([item]);
+        setShowCopyIcon(false);
+        setTimeout(() => {
+          setShowCopyIcon(true);
+        }, 2000);
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  };
+
+  const downloadImage = async () => {
+    if (!headerRef.current) return;
+    const canvas = await html2canvas(headerRef.current);
+    const link = document.createElement('a');
+    link.download = 'github-header.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  };
 
   const SecondaryLine = () => (
     <div className="background-text-wrapper">
@@ -27,31 +54,31 @@ const Header = () => {
         ))}
     </div>
   );
-  const downloadImage = async () => {
-    if (!headerRef.current) return;
-    const canvas = await html2canvas(headerRef.current);
-    const link = document.createElement('a');
-    link.download = 'github-header.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  };
 
-  const copyImage = async () => {
-    if (!headerRef.current) return;
-    const canvas = await html2canvas(headerRef.current);
-    canvas.toBlob(async (blob) => {
-      if (!blob) return;
-      try {
-        const item = new ClipboardItem({ 'image/png': blob });
-        await navigator.clipboard.write([item]);
-        setCopy(false);
-        setTimeout(() => {
-          setCopy(true);
-        }, 2000);
-      } catch (err) {
-        console.log(err);
-      }
-    });
+  const MainLine = () => {
+    return (
+      <div className="main-text-wrapper">
+        {mainText
+          .trim()
+          .replace('/d', '•')
+          .split(' ')
+          .map((text) => {
+            const matchFound = text === highlightedText.trim().replace('/d', '•');
+            return (
+              <span
+                className="main-text"
+                style={{
+                  backgroundColor: `${matchFound ? textColor : backgroundColor}`,
+                  color: `${matchFound ? backgroundColor : textColor}`,
+                  padding: `${matchFound ? '0px 2px' : ''}`,
+                }}
+              >
+                {text}
+              </span>
+            );
+          })}
+      </div>
+    );
   };
 
   return (
@@ -59,30 +86,14 @@ const Header = () => {
       <div className="header">
         <div ref={headerRef} className="banner" style={{ backgroundColor: backgroundColor }}>
           <SecondaryLine />
-          <div className="main-text-wrapper">
-            {mainText
-              .replace('/d', '•')
-              .split(' ')
-              .map((text) => (
-                <span
-                  className="main-text"
-                  style={{
-                    backgroundColor: `${text === highlightedText.replace('/d', '•') ? textColor : backgroundColor}`,
-                    color: `${text === highlightedText.replace('/d', '•') ? backgroundColor : textColor}`,
-                    padding: `${text === highlightedText.replace('/d', '•') ? '0px 2px' : ''}`,
-                  }}
-                >
-                  {text}
-                </span>
-              ))}
-          </div>
+          <MainLine />
           <SecondaryLine />
         </div>
       </div>
       <div className="buttons-container">
         <button onClick={copyImage} className="copy-btn">
           <>
-            {copy ? (
+            {showCopyIcon ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"

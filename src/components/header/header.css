@@ -54,12 +54,14 @@
   flex-direction: column;
   gap: 10px;
 }
+
 .buttons-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
 }
+
 .copy-btn {
   display: flex;
   align-items: center;
@@ -73,9 +75,16 @@
   border-radius: 4px;
   transition: all 0.1s ease;
 }
+
 .copy-btn:hover {
   transform: scale(1.08);
+  border-color: rgb(12, 165, 12);
 }
+
+.copy-btn:hover svg {
+  color: rgb(12, 165, 12);
+}
+
 .download-btn {
   display: flex;
   align-items: center;
@@ -89,6 +98,12 @@
   border-radius: 4px;
   transition: all 0.1s ease;
 }
+
 .download-btn:hover {
   transform: scale(1.08);
+  border-color: rgb(39, 125, 255);
+}
+
+.download-btn:hover svg {
+  color: rgb(39, 125, 255);
 }
